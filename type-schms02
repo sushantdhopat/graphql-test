@@ -1,0 +1,8 @@
+query { __schema {
+ queryType { name } mutationType { name } subscriptionType { name }
+ types { kind name
+ fields { name
+ args {
+name }
+} }
+} }
