@@ -1,7 +1,5 @@
 
-Twitter LinkedIn GitHub
-GraphQL Test Cases
-	Name 	Description 	Payload
+https://anmolksachan.github.io/graphql/
 	GraphQL API endpoint	
 Common endpoint for GraphQL APIs
 	
@@ -267,4 +265,3 @@ Can be used as a CLI client also to automate attacks
     ]
 }
 
-Developed with ❤️ by Anmol K Sachan | Follow me @FR13ND0x7f © 2023
